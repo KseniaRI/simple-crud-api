@@ -1,13 +1,9 @@
-import { IncomingMessage, ServerResponse } from "http";
 import { users } from "../utils.js";
-import { IUser } from "../models/userModel.js";
 import { sendResponse } from "../helpers/sendResponse.js";
 import { parseUserId } from "../helpers/parseUserId.js";
 import { validateUserId } from "../helpers/validateUserId.js";
-
-export const updateUser = async (req: IncomingMessage, res: ServerResponse<IncomingMessage>) => {
+export const updateUser = async (req, res) => {
     const userId = parseUserId(req);
-
     if (userId) {
         const isValidId = validateUserId(userId);
         if (!isValidId) {
@@ -15,24 +11,23 @@ export const updateUser = async (req: IncomingMessage, res: ServerResponse<Incom
             return;
         }
     }
-
     const user = users.find(user => user.id === userId);
-  
     if (!user) {
         sendResponse(res, "error", 404, "User not found");
-    } else {
+    }
+    else {
         let body = '';
         req.on('data', (chunk) => {
             body += chunk.toString();
         });
-
         req.on('end', () => {
-            const updateUser: Partial<IUser> = JSON.parse(body);
+            const updateUser = JSON.parse(body);
             if (!updateUser.userName || !updateUser.age || !updateUser.hobbies) {
                 sendResponse(res, "error", 404, "Username, age and hobbies are required");
-            } else {
+            }
+            else {
                 const userIndex = users.findIndex(user => user.id === userId);
-                const updatedUser: IUser = {
+                const updatedUser = {
                     ...user,
                     userName: updateUser.userName,
                     age: updateUser.age,
@@ -43,4 +38,5 @@ export const updateUser = async (req: IncomingMessage, res: ServerResponse<Incom
             }
         });
     }
-}
+};
+//# sourceMappingURL=updateUser.js.map

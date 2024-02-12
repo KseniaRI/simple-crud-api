@@ -1,14 +1,18 @@
 import { IncomingMessage, ServerResponse } from "http";
-import { users } from "../utils.ts";
-import { sendResponse } from "../helpers/sendResponse.ts";
-import { parseUserId } from "../helpers/parseUserId.ts";
-import { validateUserId } from "../helpers/validateUserId.ts";
+import { users } from "../utils.js";
+import { sendResponse } from "../helpers/sendResponse.js";
+import { parseUserId } from "../helpers/parseUserId.js";
+import { validateUserId } from "../helpers/validateUserId.js";
 
 export const deleteUser = async (req: IncomingMessage, res: ServerResponse<IncomingMessage>) => {
     const userId = parseUserId(req);
 
     if (userId) {
-        validateUserId(userId, res);
+        const isValidId = validateUserId(userId);
+        if (!isValidId) {
+            sendResponse(res, "error", 400, "Invalid userId format");
+            return;
+        }
     }
 
     const user = users.find(user => user.id === userId);
@@ -18,7 +22,6 @@ export const deleteUser = async (req: IncomingMessage, res: ServerResponse<Incom
     } else {
         const userIndex = users.findIndex(user => user.id === userId);
         users.splice(userIndex, 1);
-        res.writeHead(204, { 'Content-Type': 'application/json' });
         res.end();
     }
 }

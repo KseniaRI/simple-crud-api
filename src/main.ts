@@ -1,11 +1,11 @@
 import { createServer } from "http";
 import { parse } from "url";
-import { getAllUsers } from "./controllers/getAllUsers.ts";
-import { addUser } from "./controllers/addUser.ts";
-import { getUser } from "./controllers/getUser.ts";
-import { deleteUser } from "./controllers/deleteUser.ts";
-import { updateUser } from "./controllers/updateUser.ts";
-import { sendResponse } from "./helpers/sendResponse.ts";
+import { getAllUsers } from "./controllers/getAllUsers.js";
+import { addUser } from "./controllers/addUser.js";
+import { getUser } from "./controllers/getUser.js";
+import { deleteUser } from "./controllers/deleteUser.js";
+import { updateUser } from "./controllers/updateUser.js";
+import { sendResponse } from "./helpers/sendResponse.js";
 
 const server = createServer(async (req, res) => {
     try {
@@ -35,7 +35,7 @@ const server = createServer(async (req, res) => {
     
 });
 
-const PORT = 3000;
+const { PORT = 3000 } = process.env;;
 
 server.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);

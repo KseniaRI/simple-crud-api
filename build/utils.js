@@ -1,6 +1,4 @@
-import { IUser } from "./models/userModel.js";
-
-export const users: IUser[] = [
+export const users = [
     {
         "id": "9810d724-e191-4735-a836-e7783cc0af83",
         "userName": "Ivan",
@@ -20,3 +18,4 @@ export const users: IUser[] = [
         "hobbies": ['riding']
     },
 ];
+//# sourceMappingURL=utils.js.map

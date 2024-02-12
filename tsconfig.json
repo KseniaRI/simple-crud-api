@@ -14,8 +14,6 @@
     "strict": true,
     "noImplicitAny": true,
     "skipLibCheck": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"],
