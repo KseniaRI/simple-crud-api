@@ -12,19 +12,22 @@
 
 User's object:
 
-```{
+```
+{
     id: string, uuid 
     userName: string, required
     age: number, required
     hobbies: array of strings or empty array, required
-}```
+}
+
+```
 
 
 ----
 
 ##Scrtpts:
 
-```npm script start:prod``` Starts the build process and then runs the bundled file
+```npm script start:prod``` - Starts the build process and then runs the bundled file
 
 
-```npm script start:dev``` The application is run in development mode.
+```npm script start:dev``` - The application is run in development mode.
