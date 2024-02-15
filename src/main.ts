@@ -35,7 +35,7 @@ const server = createServer(async (req, res) => {
     
 });
 
-const { PORT = 3000 } = process.env;;
+const { PORT = 3000 } = process.env;
 
 server.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);

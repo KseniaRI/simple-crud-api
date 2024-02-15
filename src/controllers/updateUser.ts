@@ -7,7 +7,6 @@ import { validateUserId } from "../helpers/validateUserId.js";
 
 export const updateUser = async (req: IncomingMessage, res: ServerResponse<IncomingMessage>) => {
     const userId = parseUserId(req);
-
     if (userId) {
         const isValidId = validateUserId(userId);
         if (!isValidId) {
